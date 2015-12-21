@@ -6,8 +6,9 @@ package main
 type Suit int
 
 const (
+	_ Suit = iota
 	// Heart suit
-	Heart Suit = iota
+	Heart
 	// Diamond suit
 	Diamond
 	// Spade  suit
@@ -16,4 +17,5 @@ const (
 	Club
 )
 
-var SuitList []Suit = []Suit{Heart, Diamond, Spade, Club}
+// SuitList list for all availble suits
+var SuitList = []Suit{Heart, Diamond, Spade, Club}

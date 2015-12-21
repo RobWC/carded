@@ -9,8 +9,9 @@ const _CardType_name = "NumberCardFaceCardAceCardJokerCard"
 var _CardType_index = [...]uint8{0, 10, 18, 25, 34}
 
 func (i CardType) String() string {
+	i -= 1
 	if i < 0 || i >= CardType(len(_CardType_index)-1) {
-		return fmt.Sprintf("CardType(%d)", i)
+		return fmt.Sprintf("CardType(%d)", i+1)
 	}
 	return _CardType_name[_CardType_index[i]:_CardType_index[i+1]]
 }

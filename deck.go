@@ -6,7 +6,7 @@ func (d *newDeck) deal() {
 
 }
 
-// Deck a deck of cards
+// Deck a deck of card
 type Deck struct {
 	Cards []Card
 }
@@ -17,8 +17,9 @@ func NewDeck() *Deck {
 
 	for i := range SuitList {
 		for n := range CardSet {
-			CardSet[n].Suit = SuitList[i]
-			cards = append(cards, CardSet[n])
+			card := CardSet[n]
+			card.Suit = SuitList[i]
+			cards = append(cards, card)
 		}
 	}
 

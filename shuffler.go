@@ -5,25 +5,22 @@ import (
 	"time"
 )
 
-//Shuffler interface for different types of card shufflers
-// each shuffler will change how it decides to randomize the deck
-// by using a random shuffler you will increase the entropy and
-type Shuffler interface {
-	Shuffle(*Deck)
-}
-
-// FoldingShuffler shuffles cards by splitting the deck and folding them together
-func FoldingShuffler(d *Deck) {
-	var neworder []Card
-
-	for i := 0; i < len(d.Cards); i = i + 1 {
-		neworder = append(neworder, d.Cards[i])
-	}
-
-	d.Cards = neworder
-}
-
-// RandShuffler shuffle cards in a random order
-func RandShuffler(d *Deck) {
+// Shuffler shuffle cards in a random order
+func Shuffler(d *Deck) {
+	neworder := make([]Card, len(d.Cards))
 	rand.Seed(int64(time.Now().Nanosecond()))
+	m := make(map[int]bool)
+	oid := 0
+	for {
+		id := rand.Intn(len(d.Cards))
+		if _, ok := m[id]; !ok {
+			m[id] = true
+			neworder[oid] = d.Cards[id]
+			oid++
+		}
+		if len(m) == len(d.Cards) {
+			break
+		}
+	}
+	d.Cards = neworder
 }
